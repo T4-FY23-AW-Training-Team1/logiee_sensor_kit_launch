@@ -143,6 +143,7 @@ def launch_setup(context, *args, **kwargs):
             name="distortion_corrector_node",
             remappings=[
                 ("~/input/twist", "/sensing/vehicle_velocity_converter/twist_with_covariance"),
+                # ("~/input/twist", "/hoge"),
                 ("~/input/imu", "/sensing/imu/imu_data"),
                 ("~/input/pointcloud", "mirror_cropped/pointcloud_ex"),
                 ("~/output/pointcloud", "rectified/pointcloud_ex"),
@@ -157,7 +158,8 @@ def launch_setup(context, *args, **kwargs):
             plugin="pointcloud_preprocessor::RingOutlierFilterComponent",
             name="ring_outlier_filter",
             remappings=[
-                ("input", "rectified/pointcloud_ex"),
+                # ("input", "mirror_cropped/pointcloud_ex"),
+                 ("input", "rectified/pointcloud_ex"),
                 ("output", "outlier_filtered/pointcloud"),
             ],
             extra_arguments=[{"use_intra_process_comms": LaunchConfiguration("use_intra_process")}],
